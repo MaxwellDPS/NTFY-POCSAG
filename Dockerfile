@@ -8,8 +8,9 @@ WORKDIR /app
 RUN mkdir /opt/rpitx && \
     git clone https://github.com/F5OEO/rpitx /opt/rpitx && \
     cd /opt/rpitx && \
-    ./install.sh && \
-    install /opt/rpitx/pocsag /usr/local/bin/pocsag 
+    ./install.sh
+
+RUN install /opt/rpitx/pocsag /usr/local/bin/pocsag 
 
 # Copy the Python application files into the container
 COPY src/requirements.txt /tmp/requirements.txt

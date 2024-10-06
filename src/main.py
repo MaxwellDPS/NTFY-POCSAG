@@ -10,6 +10,7 @@ import sseclient
 
 logger = logging.getLogger("POCSAG BRIDGE")
 
+
 IS_YES = ['true', 't', 'yes', 'yeet', 'duh', '1'] # if you use 1 you should feel dumb
 
 class POCSAGMessageException(Exception):
@@ -205,7 +206,7 @@ if __name__ == "__main__":
             log_level = logging.ERROR
 
     logger.setLevel(log_level)
-    
+    logging.basicConfig(level=log_level)
 
     bridge = SSEBridge(
         ntfy_topic = os.getenv('NTFY_TOPIC'),

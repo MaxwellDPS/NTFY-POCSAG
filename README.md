@@ -7,6 +7,15 @@ This project is a proof-of-concept (POC) for a NTFY-to-POCSAG bridge. It listens
 - Docker and Docker Compose installed on your system.
 - A Raspberry Pi with GPIO access for using `rpitx` (the software leverages the Raspberry Pi's hardware).
 
+### Pager setup
+Assumes the pager is set as follows
+
+```
+Func Code:   1   2  3  4
+POSCAG MODE: A   T  A  T
+ALERT OVRD:  🔕 🔕 🔔 🔔
+```
+
 ## Installation and Setup
 
 1. **Clone the repository:**

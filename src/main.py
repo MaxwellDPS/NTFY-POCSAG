@@ -162,7 +162,7 @@ class SSEBridge:
 
         # Execute the command
         p = Popen(
-            ['sudo','./pocsag', '-f', str(self.pocsag_freq), '-t', '1', '-b', str(func_code)],
+            ['pocsag', '-f', str(self.pocsag_freq), '-t', '1', '-b', str(func_code)],
             stdout=PIPE, stdin=PIPE, stderr=PIPE, text=True
         )
         p.communicate(input=pocsag_message)

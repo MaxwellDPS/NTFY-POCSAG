@@ -35,7 +35,7 @@ class SSEBridge:
         logger: logging.Logger = logger,
         **kwargs
     ) -> None:
-        self.logger = logger
+        self.logger = logging.getLogger("POCSAG BRIDGE")
         if not ntfy_topic:
             raise ValueError("YOU MUST SET AN NTFY TOPIC")
 

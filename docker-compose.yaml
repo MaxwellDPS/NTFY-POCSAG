@@ -4,9 +4,6 @@ services:
   pocsag-bridge:
     build: .
     privileged: true
-    devices:
-      - /dev/mem
-      - /dev/gpiomem
     env_file:
       - .env
     command: python main.py

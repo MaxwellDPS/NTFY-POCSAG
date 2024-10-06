@@ -5,8 +5,8 @@ FROM python:3.12
 WORKDIR /app
 
 # Clone and install rpitx
-RUN git clone https://github.com/F5OEO/rpitx \
-    cd rpitx \
+RUN git clone https://github.com/F5OEO/rpitx && \
+    cd rpitx && \
     ./install.sh
 
 # Copy the Python application files into the container

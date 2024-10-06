@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  pocsag-bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # privileged: true       # Required for GPIO access
+
+    devices:
+      # - /dev/mem           # Access to the Raspberry Pi memory
+      - /dev/gpiomem       # Access to GPIO memory
+    volumes:
+      - .:/app             # Mount the current directory to /app in the container
+    environment:
+      - PYTHONUNBUFFERED=1 # Ensures logs are shown in real-time
+    command: python main.py

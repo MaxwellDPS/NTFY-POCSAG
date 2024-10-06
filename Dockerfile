@@ -16,10 +16,6 @@ RUN apt update -y && apt install -y \
 
 RUN git clone https://github.com/F5OEO/rpitx /opt/rpitx
 
-RUN git clone https://github.com/F5OEO/csdr /opt/rpitx/csdr && \
-    cd /opt/rpitx/csdr  && \
-    make && make install
-
 RUN git clone https://github.com/F5OEO/librpitx /opt/rpitx/src/librpitx && \
     cd /opt/rpitx/src/librpitx/src  && \
     make && make install

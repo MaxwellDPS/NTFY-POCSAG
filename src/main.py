@@ -9,7 +9,7 @@ from subprocess import Popen, PIPE
 import sseclient
 
 logger = logging.getLogger("POCSAG BRIDGE")
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 
 
@@ -217,6 +217,7 @@ if __name__ == "__main__":
         default_capcode = os.getenv("DEFAULT_CAPCODE"),
         use_title_capcode = os.getenv("USE_TITLE_CAPCODE", "false").lower() in IS_YES,
         silence_override_threshold = int(os.getenv("SILENCE_OVERRIDE_THRESHOLD", '4')),
+        logger=logger
     )
 
     bridge.start()

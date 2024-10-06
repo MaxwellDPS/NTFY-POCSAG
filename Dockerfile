@@ -1,7 +1,11 @@
 # Use a Raspberry Pi compatible base image with Python 3.12
 FROM python:3.12
 
+ENV PYTHONUNBUFFERED 1
+
 # Set the working directory
+RUN mkdir /app
+
 WORKDIR /app
 
 # Clone and install rpitx
@@ -14,10 +18,10 @@ COPY src/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt && rm requirements.txt
 
 # Copy the rest of the application files
-COPY src/main.py .
+COPY src/main.py /app/main.py
 
 # add RPItx to path
 ENV PATH="$PATH:/app/rpitx"
 
 # Set the entry point for the container
-CMD ["python", "/app/main.py"]
+CMD ["python", "main.py"]

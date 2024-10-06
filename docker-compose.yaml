@@ -2,24 +2,11 @@ version: '3.8'
 
 services:
   pocsag-bridge:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: python_rpitx
+    build: .
     privileged: true
     devices:
       - /dev/mem
       - /dev/gpiomem
-    volumes:
-      - .:/app
-    environment:
-      - PYTHONUNBUFFERED=1
-      - NTFY_TOPIC=${NTFY_TOPIC}
-      - NTFY_URL=${NTFY_URL}
-      - POCSAG_FREQ=${POCSAG_FREQ}
-      - POCSAG_TRIES=${POCSAG_TRIES}
-      - DEFAULT_CAPCODE=${DEFAULT_CAPCODE}
-      - USE_TITLE_CAPCODE=${USE_TITLE_CAPCODE}
-      - SILENCE_OVERRIDE_THRESHOLD=${SILENCE_OVERRIDE_THRESHOLD}
-      - LOG_LEVEL=${LOG_LEVEL}
+    env_file:
+      - .env
     command: python main.py

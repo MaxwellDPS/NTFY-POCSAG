@@ -8,6 +8,8 @@ from subprocess import Popen, PIPE
 
 import sseclient
 
+logger = logging.getLogger("POCSAG BRIDGE")
+
 IS_YES = ['true', 't', 'yes', 'yeet', 'duh', '1'] # if you use 1 you should feel dumb
 
 class POCSAGMessageException(Exception):
@@ -30,12 +32,10 @@ class SSEBridge:
         use_title_capcode: bool = True,
         silence_override_threshold: int = 4,    # NTFY Priority (high: 4)
         default_capcode: int | str | None = None,
-        log_level: int = logging.INFO,
+        logger: logging.Logger = logger,
         **kwargs
     ) -> None:
-        self.logger = logging.getLogger("POCSAG BRIDGE")
-        self.logger.setLevel(log_level)
-
+        self.logger = logger
         if not ntfy_topic:
             raise ValueError("YOU MUST SET AN NTFY TOPIC")
 
@@ -203,6 +203,9 @@ if __name__ == "__main__":
             log_level = logging.ERROR
         case "debug":
             log_level = logging.ERROR
+
+    logger.setLevel(log_level)
+    
 
     bridge = SSEBridge(
         ntfy_topic = os.getenv('NTFY_TOPIC'),

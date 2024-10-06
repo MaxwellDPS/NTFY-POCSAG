@@ -1,6 +1,5 @@
 # Use a Raspberry Pi compatible base image with Python 3.12
 FROM python:3.12
-
 ENV PYTHONUNBUFFERED 1
 
 # Clone and install rpitx

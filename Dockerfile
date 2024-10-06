@@ -16,9 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt && rm requirements.txt
 # Copy the rest of the application files
 COPY src/main.py .
 
-# Set GPIO permissions (needed to use rpitx properly)
-RUN chmod +x /dev/gpiomem /dev/mem
-
 # add RPItx to path
 ENV PATH="$PATH:/app/rpitx"
 

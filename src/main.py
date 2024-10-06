@@ -11,8 +11,6 @@ import sseclient
 logger = logging.getLogger("POCSAG BRIDGE")
 logging.basicConfig(level=logging.INFO)
 
-
-
 IS_YES = ['true', 't', 'yes', 'yeet', 'duh', '1'] # if you use 1 you should feel dumb
 
 class POCSAGMessageException(Exception):
@@ -178,7 +176,7 @@ class SSEBridge:
 
         # Iterate over the events
         for event in self.sse_client:
-            self.logger.debug(event)
+            self.logger.info(event)
 
             # Parse the event data, expecting JSON format
             try:

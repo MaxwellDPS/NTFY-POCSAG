@@ -5,13 +5,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # privileged: true       # Required for GPIO access
-
+    container_name: python_rpitx
+    privileged: true
     devices:
-      # - /dev/mem           # Access to the Raspberry Pi memory
-      - /dev/gpiomem       # Access to GPIO memory
+      - /dev/mem
+      - /dev/gpiomem
     volumes:
-      - .:/app             # Mount the current directory to /app in the container
+      - .:/app
     environment:
-      - PYTHONUNBUFFERED=1 # Ensures logs are shown in real-time
+      - PYTHONUNBUFFERED=1
+      - NTFY_TOPIC=${NTFY_TOPIC}
+      - NTFY_URL=${NTFY_URL}
+      - POCSAG_FREQ=${POCSAG_FREQ}
+      - POCSAG_TRIES=${POCSAG_TRIES}
+      - DEFAULT_CAPCODE=${DEFAULT_CAPCODE}
+      - USE_TITLE_CAPCODE=${USE_TITLE_CAPCODE}
+      - SILENCE_OVERRIDE_THRESHOLD=${SILENCE_OVERRIDE_THRESHOLD}
+      - LOG_LEVEL=${LOG_LEVEL}
     command: python main.py

@@ -1,22 +1,14 @@
 #! /usr/bin/env python3
 """NTFY POCSAG BRIDGE
 """
+import os
 import json
 import logging
-import os
 from subprocess import Popen, PIPE
+
 import sseclient
 
-
-
-# URL for your ntfy.sh topic
-NTFY_URL = "https://ntfy.sh/cha0spag3/sse"
-
-# Frequency and script parameters
-POCSAG_FREQUENCY =  "929080000"
-#POCSAG_FREQUENCY = "929087500"
-
-PAGER = "1003201"
+IS_YES = ['true', 't', 'yes', 'yeet', 'duh', '1'] # if you use 1 you should feel dumb
 
 class POCSAGMessageException(Exception):
     """Bad POCSAG RELAY MESSAGE
@@ -170,7 +162,7 @@ class SSEBridge:
 
         # Execute the command
         p = Popen(
-            ['sudo','./pocsag', '-f', str(POCSAG_FREQUENCY), '-t', '1', '-b', str(func_code)],
+            ['sudo','./pocsag', '-f', str(self.pocsag_freq), '-t', '1', '-b', str(func_code)],
             stdout=PIPE, stdin=PIPE, stderr=PIPE, text=True
         )
         p.communicate(input=pocsag_message)
@@ -218,7 +210,7 @@ if __name__ == "__main__":
         pocsag_freq = int(os.getenv("POCSAG_FREQ", '915000000')),
         pocsag_tries = int(os.getenv("POCSAG_TRIES", '1')),
         default_capcode = os.getenv("DEFAULT_CAPCODE"),
-        use_title_capcode = os.getenv("USE_TITLE_CAPCODE", "false").lower() in ['true', 't', 'yes', 'yeet', 'duh', '1'], # if you use 1 you should feel dumb
+        use_title_capcode = os.getenv("USE_TITLE_CAPCODE", "false").lower() in IS_YES,
         silence_override_threshold = int(os.getenv("SILENCE_OVERRIDE_THRESHOLD", '4')),
     )
 

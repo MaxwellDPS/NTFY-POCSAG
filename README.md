@@ -2,6 +2,8 @@
 
 This project is a proof-of-concept (POC) for a NTFY-to-POCSAG bridge. It listens for events on a specified [ntfy.sh](https://ntfy.sh) topic and relays them as POCSAG messages using `rpitx`.
 
+![](./docs/paged.png)
+
 ## Prerequisites
 
 - Docker and Docker Compose installed on your system.

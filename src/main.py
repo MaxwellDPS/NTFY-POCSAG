@@ -103,11 +103,11 @@ class SSEBridge:
         except (IndexError, ValueError): pass
 
 
-        if not self.default_capcode:
-            self.logger.critical("[!!] NO CAPCODE")
-            raise POCSAGMessageException("NO CAPCODE")
-        else:
+        if self.default_capcode:
             return int(self.default_capcode)
+
+        raise POCSAGMessageException("NO CAPCODE")
+
 
     def generate_message(self, event_data: dict, func_code: int) -> str:
         """Generates the message to send to the pager

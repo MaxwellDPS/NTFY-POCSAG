@@ -201,11 +201,11 @@ if __name__ == "__main__":
         case "error":
             log_level = logging.ERROR
         case "warning":
-            log_level = logging.ERROR
+            log_level = logging.WARNING
         case "info":
-            log_level = logging.ERROR
+            log_level = logging.INFO
         case "debug":
-            log_level = logging.ERROR
+            log_level = logging.DEBUG
 
     logger.setLevel(log_level)
 
